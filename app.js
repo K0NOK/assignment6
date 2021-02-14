@@ -17,19 +17,19 @@ const KEY = '20267531-6c8bb7cc59f851f5c3ca0e37b';
 
 // show images 
 const showImages = (images) => {
-    imagesArea.style.display = 'block';
-    gallery.innerHTML = '';
-    toggleSpinner(false);
-    // show gallery title
-    galleryHeader.style.display = 'flex';
-    images.forEach(image => {
-        let div = document.createElement('div');
-        div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-        div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
-        gallery.appendChild(div);
-    })
-}
-
+        imagesArea.style.display = 'block';
+        gallery.innerHTML = '';
+        toggleSpinner(false);
+        // show gallery title
+        galleryHeader.style.display = 'flex';
+        images.forEach(image => {
+            let div = document.createElement('div');
+            div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
+            div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+            gallery.appendChild(div);
+        })
+    }
+    // Used async await for practicing
 const getImages = async(query) => {
     // added toggle spinner
     toggleSpinner(true)
@@ -91,6 +91,7 @@ const createSlider = () => {
             slideIndex++;
             changeSlide(slideIndex);
         }, duration * (-1));
+        alert('duration time can not be a negative number');
     } else {
         timer = setInterval(function() {
             slideIndex++;
@@ -127,6 +128,7 @@ searchBtn.addEventListener('click', function() {
     clearInterval(timer);
     const search = document.getElementById('search');
     if (search.value === '') {
+        // Added a new feature "Empty search box won't show any result"
         const searchWarning = document.getElementById('empty-warning');
         searchWarning.innerHTML = '';
 
@@ -145,7 +147,7 @@ document.getElementById('search').addEventListener('keypress', function(event) {
             document.getElementById('search-btn').click();
         }
     })
-    // Adding Enter keypress function for the duration 
+    // Adding a new feature "Enter keypress function for the duration" 
 document.getElementById('duration').addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             document.getElementById('create-slider').click();
